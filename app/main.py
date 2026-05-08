@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 
+from app.api.users import router as users_router
 from app.core.config import settings
 from app.db.base import Base
 from app.db.session import engine
+from app.models.cigarette_log import CigaretteLog  # noqa: F401
+from app.models.user import User  # noqa: F401
 
 # Create the FastAPI application instance.
 app = FastAPI(
@@ -26,4 +29,8 @@ def read_root():
 @app.get("/health")
 def health_check():
     # Simple route to confirm the API is running.
-    return {"message": "Smoking Tracker API is up and running"}
+    return {"status": "ok", "message": "Smoking Tracker API is up and running"}
+
+
+# Include API routers.
+app.include_router(users_router)
