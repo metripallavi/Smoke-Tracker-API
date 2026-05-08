@@ -1,7 +1,6 @@
-from datetime import datetime
-
-from sqlalchemy import DateTime, ForeignKey, Integer
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Column, DateTime, ForeignKey, Integer
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import func
 
 from app.db.base import Base
 
@@ -9,9 +8,8 @@ from app.db.base import Base
 class CigaretteLog(Base):
     __tablename__ = "cigarette_logs"
 
-    id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
-    user_id: Mapped[int] = mapped_column(Integer, ForeignKey("users.id"), nullable=False)
-    smoked_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, nullable=False)
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    smoked_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
-    # Relationship back to the user.
     user = relationship("User", back_populates="cigarette_logs")

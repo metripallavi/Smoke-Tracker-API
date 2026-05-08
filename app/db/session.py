@@ -3,8 +3,19 @@ from sqlalchemy.orm import sessionmaker
 
 from app.core.config import settings
 
+
 # Create the SQLAlchemy engine from the database URL.
 engine = create_engine(settings.database_url)
 
+
 # Create a session factory for database operations.
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+
+# Dependency to get DB session per request.
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

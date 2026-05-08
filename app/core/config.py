@@ -8,7 +8,12 @@ class Settings(BaseSettings):
     debug: bool = True
 
     # PostgreSQL connection string.
-    database_url: str = "postgresql+psycopg2://postgres:mypassword@localhost:5432/smoke_tracker_db"
+    database_url: str = "postgresql+psycopg2://postgres:admin@localhost:5432/smoke_tracker_db"
+
+    # JWT settings.
+    secret_key: str = "long-random-secret-key"
+    algorithm: str = "HS256"
+    access_token_expire_minutes: int = 30
 
     model_config = SettingsConfigDict(
         env_file=".env",
