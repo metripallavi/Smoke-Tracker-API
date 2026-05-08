@@ -7,6 +7,11 @@ A FastAPI-based backend project for tracking cigarette smoking activity per user
 **Pallavi Metri**  
 Backend Developer / DevOps
 
+## Live API
+
+- Render URL: https://smoke-tracker-api-3skh.onrender.com
+- Swagger Docs: https://smoke-tracker-api-3skh.onrender.com/docs
+- Health Check: https://smoke-tracker-api-3skh.onrender.com/health
 ## Overview
 
 Smoking Tracker API is a backend service built with FastAPI, SQLAlchemy, and PostgreSQL. It allows users to register, log in securely, add smoking logs, view their logs, filter logs for the current day, delete logs, and view summary counts.
